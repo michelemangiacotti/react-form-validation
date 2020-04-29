@@ -1,0 +1,16 @@
+{
+  "name": "test-form-validation",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "description": "simple form validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "michele mangiacotti",
+  "license": "ISC"
+}
