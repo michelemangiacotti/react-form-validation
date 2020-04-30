@@ -7,10 +7,6 @@ import Button from 'react-bootstrap/Button'
 
 
 class Step1 extends React.Component {
-
-    updateEmailAddress(e) {
-        this.setState({ nome: e.target.value });
-      }
     render() {
         return (
             <Container fluid="md" style={{ width: '100%' }} className={this.props.step !== 1 ? 'disabledStep' : ''}>
