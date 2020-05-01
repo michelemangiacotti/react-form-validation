@@ -60,14 +60,14 @@ class App extends React.Component {
         console.log("sto cliccando avanti");
         let promise = new Promise((resolve, reject) => {
             if (this.state.step === 1) {
-                const re = /^[0-9\b]+$/;
-                if (this.state.nome === '' || re.test(this.state.nome)) {
+                const re = /^[a-zA-Z]+$/ ;
+                if (this.state.nome === '' || !re.test(this.state.nome)) {
                     reject(Error("wrong server validation"));
-                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico' });
+                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico' , cognomeErrore});
                 } else {
-                    if (this.state.cognome === '' || re.test(this.state.cognome)) {
+                    if (this.state.cognome === '' || !re.test(this.state.cognome)) {
                         reject(Error("wrong server validation"));
-                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico' });
+                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico' ,nomeErrore});
                     }
                 }
             }
@@ -75,7 +75,7 @@ class App extends React.Component {
                 if (this.state.password === '' || this.state.password !== this.state.confermaPassword ||
                     this.state.confermaPassword === '') {
                     reject(Error("wrong server validation"));
-                    this.setState({ passwordErrore: 'Campi non valorizzata o le passwords non corrispondono ' });
+                    this.setState({ passwordErrore: 'Campi non valorizzati o le passwords non corrispondono ' });
                 }
             }
             if (this.state.step === 3) {
@@ -114,7 +114,8 @@ class App extends React.Component {
         if (this.state.step === 4) {
             return (
                 <div className="App">
-                    Hai inviato i dati controlla la tua mail
+                    Hai inviato i dati inseriti, controlla la tua mail per confermare la registrazione
+                    <br />
                     <br />
                     <Button className="btn-success" onClick={() => this.handleNewForm()}>
                         Ritorna alla home page
