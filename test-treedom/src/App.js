@@ -146,7 +146,7 @@ class App extends React.Component {
                 )
             } else {
                 return (
-                    <Carousel activeIndex={this.state.step}>
+                    <Carousel activeIndex={this.state.step}  controls={false}>
                         <Carousel.Item>
                             <div className="app-container">
                                 <Step1 onClickNext={() => this.handleNextClick()}
@@ -158,7 +158,6 @@ class App extends React.Component {
                                     cognome={this.state.cognome}
                                     nomeErrore={this.state.nomeErrore}
                                     cognomeErrore={this.state.cognomeErrore}
-                                    
                                 />
                             </div>
                         </Carousel.Item>
