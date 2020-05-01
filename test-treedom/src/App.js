@@ -130,7 +130,7 @@ class App extends React.Component {
     render() {
 
         const isMobile = this.isMobile();
-        console.log("Is mobile: " + isMobile);
+        console.log("Is mobile: " + navigator.userAgent);
 
         if (isMobile) {
             if (this.state.step === 3) {
@@ -216,7 +216,6 @@ class App extends React.Component {
                             cognomeErrore={this.state.cognomeErrore}
 
                         />
-                        <br />
                         <Step2 onClickNext={() => this.handleNextClick()}
                             confermaPassword={this.state.confermaPassword}
                             password={this.state.password}
@@ -225,7 +224,6 @@ class App extends React.Component {
                             passwordErrore={this.state.passwordErrore}
                             onClickBack={() => this.handleBackClick()}
                             step={this.state.step} />
-                        <br />
                         <Step3 onClickNext={() => this.handleNextClick()}
                             email={this.state.email}
                             emailErrore={this.state.emailErrore}

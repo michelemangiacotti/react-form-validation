@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 class Step1 extends React.Component {
     render() {
         return (
-            <Container fluid="md" style={{ width: '100%' }}
+            <Container fluid="md" style={{ width: '100%', marginTop :"30px" }}
                 className={this.props.step !== 0 ? 'disabled-step' : ''}>
                 <Row >
                     <Col>

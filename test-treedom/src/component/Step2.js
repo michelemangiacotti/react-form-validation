@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 class Step2 extends React.Component {
     render() {
         return (
-            <Container fluid="md" style={{ width: '100%' }}
+            <Container fluid="md" style={{ width: '100%', marginTop: "30px" }}
                 className={this.props.step !== 1 ? 'disabled-step' : ''}>
                 <Row>
                     <Col>
@@ -20,16 +20,16 @@ class Step2 extends React.Component {
                 </Row>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
-                        <input placeholder="Inserisci Password" type="password" name="password" 
-                        style={{ width: '50%' }}
+                        <input placeholder="Inserisci Password" type="password" name="password"
+                            style={{ width: '50%' }}
                             value={this.props.password}
                             onChange={this.props.onChangePassword} />
                     </Col>
                 </Row>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
-                        <input placeholder="Ripeti Password" type="password" name="confermaPassord" 
-                        style={{ width: '50%' }}
+                        <input placeholder="Ripeti Password" type="password" name="confermaPassord"
+                            style={{ width: '50%' }}
                             value={this.props.confermaPassword}
                             onChange={this.props.onChangeConfermaPassword} />
                     </Col>
