@@ -32,7 +32,7 @@ class Step2 extends React.Component {
                     <Col>
                         <label>
                             Ripeti Password:
-                            <input type="password" name="repeatPassword" style={{ width: '25%' }}
+                            <input type="password" name="confermaPassord" style={{ width: '25%' }}
                                 value={this.props.confermaPassword}
                                 onChange={this.props.onChangeConfermaPassword} />
                         </label>

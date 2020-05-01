@@ -14,6 +14,7 @@ class App extends React.Component {
             nome: '',
             nomeErrore: '',
             cognome: '',
+            password: '',
             cognomeErrore: '',
             email: '',
             emailErrore: '',
