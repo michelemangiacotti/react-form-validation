@@ -12,11 +12,15 @@ class App extends React.Component {
         this.state = {
             step: 1,
             nome: '',
+            nomeErrore: '',
             cognome: '',
+            cognomeErrore: '',
             email: '',
-            password: '',
+            emailErrore: '',
+            passwordErrore: '',
             confermaPassword: ''
         }
+
     }
 
     componentDidMount() {
@@ -25,60 +29,84 @@ class App extends React.Component {
     }
 
 
-    handleNextClick() {
+     handleNextClick() {
+        let emailErrore = '';
+        let nomeErrore = '';
+        let cognomeErrore = '';
+        let passwordErrore = '';
 
         console.log("sto cliccando avanti");
-
         let promise = new Promise((resolve, reject) => {
-
             if (this.state.step === 1) {
                 const re = /^[0-9\b]+$/;
                 if (this.state.nome === '' || re.test(this.state.nome)) {
                     reject(Error("wrong server validation"));
-                    window.alert("errore nome");
+                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico' });
                 } else {
                     if (this.state.cognome === '' || re.test(this.state.cognome)) {
                         reject(Error("wrong server validation"));
+                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico' });
                     }
-                }
-            } else {
-                if (this.state.step === 2) {
-                    if (this.state.password === '' || this.state.password !== this.state.confermaPassword ||
-                        this.state.password === '') {
-                        reject(Error("wrong server validation"));
-                    }
-
                 }
             }
-            // if (this.state.step === 3){
-
-            // }
+            if (this.state.step === 2) {
+                if (this.state.password === '' || this.state.password !== this.state.confermaPassword ||
+                    this.state.confermaPassword === '') {
+                    reject(Error("wrong server validation"));
+                    this.setState({ passwordErrore: 'Campi non valorizzata o le passwords non corrispondono ' });
+                }
+            }
+            if (this.state.step === 3) {
+                if (this.state.email === '' || !this.state.email.includes("@")) {
+                    reject(Error("wrong server validation"));
+                    this.setState({ emailErrore: 'Email non valido' });
+                }
+            }
+            // se non abbiamo validazione fallite 
+            resolve();
         });
-
+        
         promise.then(res => {
-            this.setState({ step: this.state.step + 1 });
+            this.setState({ step: this.state.step + 1, emailErrore, nomeErrore, cognomeErrore, passwordErrore });
             console.log(this.state.step);
         })
             .catch(error => {
-                console.log("impossibile passare al prossimo step", error);
+                console.log("impossibile avanzare al prossimo step", error);
             });
     }
 
-    handleRegistrationClick() {
-
+    handleFinishClick() {
         //chiamata api mock validation campi
         this.setState({ step: this.state.step + 1 });
         console.log("sto cliccando per registrarmi");
     }
 
     handleBackClick() {
-
-        //chiamata api mock validation campi
-
         console.log("sto cliccando indietro");
         this.setState({ step: this.state.step - 1 });
-        console.log(this.state.step);
+        console.log("Step Back: " + this.state.step);
 
+    }
+
+    onChangeNomeHandler = val => {
+        console.log("on change name");
+        this.setState({ nome: val.target.value });
+    };
+    onChangeCongnomeHandler = val => {
+        console.log("on change name");
+        this.setState({ cognome: val.target.value });
+    };
+    onChangePasswordHandler = val => {
+        console.log("on change name");
+        this.setState({ password: val.target.value });
+    };
+    onChangeConfermaPasswordHandler = val => {
+        console.log("on change name");
+        this.setState({ confermaPassword: val.target.value });
+    };
+    onChangeEmailHandler = val => {
+        console.log("on change name");
+        this.setState({ email: val.target.value });
     }
 
     handleNewForm() {
@@ -92,7 +120,7 @@ class App extends React.Component {
         if (this.state.step === 4) {
             return (
                 <div className="App">
-                    Hai mandato i dati
+                    Hai inviato i dati controlla la tua mail
                     <br />
                     <Button className="btn-success" onClick={() => this.handleNewForm()}>
                         Ritorna alla home page
@@ -102,26 +130,35 @@ class App extends React.Component {
         } else {
 
             return (
-                <div className="App">
-                    <header className="App-header">
-                        <Step1 onClickNext={() => this.handleNextClick()}
-                            onClickBack={() => this.handleBackClick()}
-                            step={this.state.step}
-                            nome={this.state.nome}
-                            cognome={this.state.cognome} />
-                        <br />
-                        <Step2 onClickNext={() => this.handleNextClick()}
-                            confermaPassword={this.state.confermaPassword}
-                            password={this.state.password}
-                            onClickBack={() => this.handleBackClick()}
-                            step={this.state.step} />
-                        <br />
-                        <Step3 onClickRegistration={() => this.handleRegistrationClick()}
-                            email={this.state.email}
-                            onClickBack={() => this.handleBackClick()}
-                            step={this.state.step} />
-                    </header>
-                </div>
+                <form className="App">
+                    <Step1 onClickNext={() => this.handleNextClick()}
+                        onClickBack={() => this.handleBackClick()}
+                        onChangeNome={this.onChangeNomeHandler}
+                        onChangeCognome={this.onChangeCongnomeHandler}
+                        step={this.state.step}
+                        nome={this.state.nome}
+                        cognome={this.state.cognome}
+                        nomeErrore={this.state.nomeErrore}
+                        cognomeErrore={this.state.cognomeErrore}
+
+                    />
+                    <br />
+                    <Step2 onClickNext={() => this.handleNextClick()}
+                        confermaPassword={this.state.confermaPassword}
+                        password={this.state.password}
+                        onChangePassword={this.onChangePasswordHandler}
+                        onChangeConfermaPassword={this.onChangeConfermaPasswordHandler}
+                        passwordErrore={this.state.passwordErrore}
+                        onClickBack={() => this.handleBackClick()}
+                        step={this.state.step} />
+                    <br />
+                    <Step3 onClickRegistration={() => this.handleFinishClick()}
+                        email={this.state.email}
+                        emailErrore={this.state.emailErrore}
+                        onChangeEmail={this.onChangeEmailHandler}
+                        onClickBack={() => this.handleBackClick()}
+                        step={this.state.step} />
+                </form>
             );
         }
     }
