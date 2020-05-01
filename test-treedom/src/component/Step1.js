@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 class Step1 extends React.Component {
     render() {
         return (
-            <Container fluid="md" style={{ width: '100%', marginTop :"30px" }}
+            <Container fluid="md" style={{ width: '100%', marginTop: "30px" }}
                 className={this.props.step !== 0 ? 'disabled-step' : ''}>
                 <Row >
                     <Col>
@@ -32,10 +32,10 @@ class Step1 extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                    <label style={{ fontSize: 12, color: "red" }}>
+                        <label style={{ fontSize: 15, color: "red" }}>
                             {this.props.nomeErrore}
                         </label>
-                        <label style={{ fontSize: 12, color: "red" }}>
+                        <label style={{ fontSize: 15, color: "red" }}>
                             {this.props.cognomeErrore}
                         </label>
                     </Col>

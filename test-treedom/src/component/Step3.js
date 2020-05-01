@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 class Step3 extends React.Component {
     render() {
         return (
-            <Container fluid="md" style={{ width: '100%', marginTop :"30px" }}
+            <Container fluid="md" style={{ width: '100%', marginTop: "30px" }}
                 className={this.props.step !== 2 ? 'disabled-step' : ''}>
                 <Row>
                     <Col>
@@ -19,7 +19,7 @@ class Step3 extends React.Component {
                 </Row>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
-                        <input placeholder="Inserisci Email" type="text" name="email" 
+                        <input placeholder="Inserisci Email" type="text" name="email"
                             style={{ width: '50%' }}
                             value={this.props.email}
                             onChange={this.props.onChangeEmail}
@@ -28,7 +28,7 @@ class Step3 extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <label style={{ fontSize: 12, color: "red" }}>
+                        <label style={{ fontSize: 15, color: "red" }}>
                             {this.props.emailErrore}
                         </label>
                     </Col>
@@ -36,7 +36,7 @@ class Step3 extends React.Component {
                 <Row>
                     <Col>
                         <Button className="btn-success" onClick={() => this.props.onClickBack()}
-                            style={{ width: "80px",display: this.props.isMobile ? 'none' : 'visible'  }} >
+                            style={{ width: "80px", display: this.props.isMobile ? 'none' : 'visible' }} >
                             Indietro
                         </Button>
                         <Button className="btn-success" onClick={() => this.props.onClickNext()}

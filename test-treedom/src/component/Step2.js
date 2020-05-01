@@ -36,7 +36,7 @@ class Step2 extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <label style={{ fontSize: 12, color: "red" }}>
+                        <label style={{ fontSize: 15, color: "red" }}>
                             {this.props.passwordErrore}
                         </label>
                     </Col>

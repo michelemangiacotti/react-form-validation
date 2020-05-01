@@ -126,9 +126,7 @@ class App extends React.Component {
         return isMobile;
     }
 
-
     render() {
-
         const isMobile = this.isMobile();
         console.log("Is mobile: " + navigator.userAgent);
 
@@ -146,7 +144,7 @@ class App extends React.Component {
                 )
             } else {
                 return (
-                    <Carousel activeIndex={this.state.step}  controls={false}>
+                    <Carousel activeIndex={this.state.step} controls={false}>
                         <Carousel.Item>
                             <div className="app-container">
                                 <Step1 onClickNext={() => this.handleNextClick()}
@@ -171,7 +169,7 @@ class App extends React.Component {
                                     passwordErrore={this.state.passwordErrore}
                                     onClickBack={() => this.handleBackClick()}
                                     step={this.state.step}
-                                   />
+                                />
                             </div>
                         </Carousel.Item>
                         <Carousel.Item>
@@ -182,7 +180,7 @@ class App extends React.Component {
                                     onChangeEmail={this.onChangeEmailHandler}
                                     onClickBack={() => this.handleBackClick()}
                                     step={this.state.step}
-                                
+
                                 />
                             </div>
                         </Carousel.Item>
