@@ -10,7 +10,7 @@ class Step2 extends React.Component {
     render() {
         return (
             <Container fluid="md" style={{ width: '100%' }}
-                className={this.props.step !== 2 ? 'disabledStep' : ''}>
+                className={this.props.step !== 2 ? 'disabled-step' : ''}>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
                         <label style={{ alignContent: 'center', fontSize: '20px' }}>
@@ -23,7 +23,8 @@ class Step2 extends React.Component {
                         <label>
                             Password:
                             <input type="password" name="password" style={{ width: '25%' }}
-                                   value={this.props.password} onChange={this.props.onChangePassword}   />
+                                value={this.props.password}
+                                onChange={this.props.onChangePassword} />
                         </label>
                     </Col>
                 </Row>
@@ -32,14 +33,15 @@ class Step2 extends React.Component {
                         <label>
                             Ripeti Password:
                             <input type="password" name="repeatPassword" style={{ width: '25%' }}
-                                value={this.props.confermaPassword} onChange={this.props.onChangeConfermaPassword}  />
+                                value={this.props.confermaPassword}
+                                onChange={this.props.onChangeConfermaPassword} />
                         </label>
                     </Col>
                 </Row>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
                         <label style={{ fontSize: 12, color: "red" }}>
-                           {this.props.passwordErrore}
+                            {this.props.passwordErrore}
                         </label>
                     </Col>
                 </Row>

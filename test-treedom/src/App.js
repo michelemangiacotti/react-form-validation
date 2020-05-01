@@ -23,25 +23,19 @@ class App extends React.Component {
 
     }
 
-
     onChangeNomeHandler = val => {
-        console.log("on change name");
         this.setState({ nome: val.target.value });
     };
     onChangeCongnomeHandler = val => {
-        console.log("on change name");
         this.setState({ cognome: val.target.value });
     };
     onChangePasswordHandler = val => {
-        console.log("on change name");
         this.setState({ password: val.target.value });
     };
     onChangeConfermaPasswordHandler = val => {
-        console.log("on change name");
         this.setState({ confermaPassword: val.target.value });
     };
     onChangeEmailHandler = val => {
-        console.log("on change name");
         this.setState({ email: val.target.value });
     }
 
@@ -60,14 +54,14 @@ class App extends React.Component {
         console.log("sto cliccando avanti");
         let promise = new Promise((resolve, reject) => {
             if (this.state.step === 1) {
-                const re = /^[a-zA-Z]+$/ ;
+                const re = /^[a-zA-Z]+$/;
                 if (this.state.nome === '' || !re.test(this.state.nome)) {
                     reject(Error("wrong server validation"));
-                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico' , cognomeErrore});
+                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico', cognomeErrore });
                 } else {
                     if (this.state.cognome === '' || !re.test(this.state.cognome)) {
                         reject(Error("wrong server validation"));
-                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico' ,nomeErrore});
+                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico', nomeErrore });
                     }
                 }
             }
@@ -113,7 +107,7 @@ class App extends React.Component {
 
         if (this.state.step === 4) {
             return (
-                <div className="App">
+                <div className="app-container">
                     Hai inviato i dati inseriti, controlla la tua mail per confermare la registrazione
                     <br />
                     <br />
@@ -125,7 +119,7 @@ class App extends React.Component {
         } else {
 
             return (
-                <form className="App">
+                <div className="app-container">
                     <Step1 onClickNext={() => this.handleNextClick()}
                         onClickBack={() => this.handleBackClick()}
                         onChangeNome={this.onChangeNomeHandler}
@@ -153,7 +147,7 @@ class App extends React.Component {
                         onChangeEmail={this.onChangeEmailHandler}
                         onClickBack={() => this.handleBackClick()}
                         step={this.state.step} />
-                </form>
+                </div>
             );
         }
     }

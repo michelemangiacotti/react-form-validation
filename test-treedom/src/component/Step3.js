@@ -9,7 +9,7 @@ class Step3 extends React.Component {
     render() {
         return (
             <Container fluid title="Terzo Step" style={{ width: '100%' }} 
-             className = { this.props.step !==3 ? 'disabledStep' : ''}>
+             className = { this.props.step !==3 ? 'disabled-step' : ''}>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
                         <label style={{ alignContent: 'center' }}>

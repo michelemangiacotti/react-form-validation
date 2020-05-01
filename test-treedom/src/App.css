@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.App {
+.app-container {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -23,7 +23,7 @@ code {
   /* width: 100%; */
 }
 
-.rowContainer {
+.row-container {
   justify-content: "space-between";
   align-items: "center";
 }
@@ -40,7 +40,7 @@ code {
   border-color: #6c757d;
 }
 
-.disabledStep {
+.disabled-step {
   pointer-events: none;
   opacity: 0.4;
 }

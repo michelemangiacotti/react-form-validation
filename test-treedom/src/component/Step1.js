@@ -10,7 +10,7 @@ class Step1 extends React.Component {
     render() {
         return (
             <Container fluid="md" style={{ width: '100%' }}
-                className={this.props.step !== 1 ? 'disabledStep' : ''}>
+                className={this.props.step !== 1 ? 'disabled-step' : ''}>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
                         <label style={{ alignContent: 'center', fontSize: '20px' }}>
