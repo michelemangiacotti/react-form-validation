@@ -23,13 +23,35 @@ class App extends React.Component {
 
     }
 
+
+    onChangeNomeHandler = val => {
+        console.log("on change name");
+        this.setState({ nome: val.target.value });
+    };
+    onChangeCongnomeHandler = val => {
+        console.log("on change name");
+        this.setState({ cognome: val.target.value });
+    };
+    onChangePasswordHandler = val => {
+        console.log("on change name");
+        this.setState({ password: val.target.value });
+    };
+    onChangeConfermaPasswordHandler = val => {
+        console.log("on change name");
+        this.setState({ confermaPassword: val.target.value });
+    };
+    onChangeEmailHandler = val => {
+        console.log("on change name");
+        this.setState({ email: val.target.value });
+    }
+
     componentDidMount() {
         console.log("componenti did mount" + this.state.step);
 
     }
 
 
-     handleNextClick() {
+    handleNextClick() {
         let emailErrore = '';
         let nomeErrore = '';
         let cognomeErrore = '';
@@ -65,21 +87,15 @@ class App extends React.Component {
             // se non abbiamo validazione fallite 
             resolve();
         });
-        
+
         promise.then(res => {
             this.setState({ step: this.state.step + 1, emailErrore, nomeErrore, cognomeErrore, passwordErrore });
             console.log(this.state.step);
-        })
-            .catch(error => {
-                console.log("impossibile avanzare al prossimo step", error);
-            });
+        }).catch(error => {
+            console.log("impossibile avanzare al prossimo step", error);
+        });
     }
 
-    handleFinishClick() {
-        //chiamata api mock validation campi
-        this.setState({ step: this.state.step + 1 });
-        console.log("sto cliccando per registrarmi");
-    }
 
     handleBackClick() {
         console.log("sto cliccando indietro");
@@ -88,30 +104,8 @@ class App extends React.Component {
 
     }
 
-    onChangeNomeHandler = val => {
-        console.log("on change name");
-        this.setState({ nome: val.target.value });
-    };
-    onChangeCongnomeHandler = val => {
-        console.log("on change name");
-        this.setState({ cognome: val.target.value });
-    };
-    onChangePasswordHandler = val => {
-        console.log("on change name");
-        this.setState({ password: val.target.value });
-    };
-    onChangeConfermaPasswordHandler = val => {
-        console.log("on change name");
-        this.setState({ confermaPassword: val.target.value });
-    };
-    onChangeEmailHandler = val => {
-        console.log("on change name");
-        this.setState({ email: val.target.value });
-    }
-
     handleNewForm() {
         this.setState({ step: 1, nome: '', cognome: '', password: '', email: '', confermaPassword: '' });
-
     }
 
     render() {
@@ -152,7 +146,7 @@ class App extends React.Component {
                         onClickBack={() => this.handleBackClick()}
                         step={this.state.step} />
                     <br />
-                    <Step3 onClickRegistration={() => this.handleFinishClick()}
+                    <Step3 onClickNext={() => this.handleNextClick()}
                         email={this.state.email}
                         emailErrore={this.state.emailErrore}
                         onChangeEmail={this.onChangeEmailHandler}

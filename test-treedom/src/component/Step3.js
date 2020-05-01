@@ -41,7 +41,7 @@ class Step3 extends React.Component {
                         <Button className="btn-success" onClick={() => this.props.onClickBack()} style={{ width: "70px" }} >
                             Indietro
                         </Button>
-                        <Button className="btn-success" onClick={() => this.props.onClickRegistration()} 
+                        <Button className="btn-success" onClick={() => this.props.onClickNext()} 
                         style={{ marginLeft: "15px", width: "70px" }} disabled={this.props.isValid}>
                             Invia
                         </Button>
