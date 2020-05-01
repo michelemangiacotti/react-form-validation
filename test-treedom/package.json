@@ -2,9 +2,11 @@
   "name": "test-form-validation",
   "version": "1.0.0",
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-responsive-carousel": "^3.2.5",
     "react-scripts": "3.4.1"
   },
   "description": "simple form validator",

@@ -8,41 +8,39 @@ import Button from 'react-bootstrap/Button'
 class Step3 extends React.Component {
     render() {
         return (
-            <Container fluid title="Terzo Step" style={{ width: '100%' }} 
-             className = { this.props.step !==3 ? 'disabled-step' : ''}>
-                <Row style={{ marginBottom: '10px' }}>
+            <Container fluid="md" title="Terzo Step" style={{ width: '100%' }}
+                className={this.props.step !== 2 ? 'disabled-step' : ''}>
+                <Row>
                     <Col>
-                        <label style={{ alignContent: 'center' }}>
+                        <label style={{ alignContent: 'center', fontSize: '20px' }}>
                             Terzo Step
                             </label>
                     </Col>
                 </Row>
                 <Row style={{ marginBottom: '10px' }}>
                     <Col>
-                        <label>
-                            Email:
-                            <input type="text" name="email"  style={{ width: '25%' }}
-                               value={this.props.email} 
-                               onChange={this.props.onChangeEmail}  
-                              />
-
-                        </label>
+                        <input placeholder="Inserisci Email" type="text" name="email" 
+                            style={{ width: '50%' }}
+                            value={this.props.email}
+                            onChange={this.props.onChangeEmail}
+                        />
                     </Col>
-                    </Row>
-                    <Row style={{ marginBottom: '10px' }}>
+                </Row>
+                <Row>
                     <Col>
                         <label style={{ fontSize: 12, color: "red" }}>
-                           {this.props.emailErrore}
+                            {this.props.emailErrore}
                         </label>
                     </Col>
                 </Row>
-                <Row style={{ marginBottom: '10px' }}>
+                <Row>
                     <Col>
-                        <Button className="btn-success" onClick={() => this.props.onClickBack()} style={{ width: "70px" }} >
+                        <Button className="btn-success" onClick={() => this.props.onClickBack()}
+                            style={{ width: "80px",display: this.props.isMobile ? 'none' : 'visible'  }} >
                             Indietro
                         </Button>
-                        <Button className="btn-success" onClick={() => this.props.onClickNext()} 
-                        style={{ marginLeft: "15px", width: "70px" }} disabled={this.props.isValid}>
+                        <Button className="btn-success" onClick={() => this.props.onClickNext()}
+                            style={{ marginLeft: "15px", width: "80px" }} disabled={this.props.isValid}>
                             Invia
                         </Button>
                     </Col>
