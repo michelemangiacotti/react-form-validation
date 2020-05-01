@@ -103,8 +103,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log("rendered" + this.state.step)
-
         if (this.state.step === 4) {
             return (
                 <div className="app-container">
