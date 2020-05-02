@@ -6,6 +6,7 @@ import Step3 from './component/Step3.js';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel'
+import { StepEnum } from './component/StepEnum.ts';
 
 //in questo caso ho inserito qui l'inica funzione utilità usata
 //ma di solito tendo a creare delle classi utility per avere un
@@ -19,7 +20,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 1,
+            step: StepEnum.Primo,
             nome: '',
             nomeErrore: '',
             cognome: '',
@@ -32,6 +33,8 @@ class App extends React.Component {
         }
 
     }
+
+    
 
     onChangeNomeHandler = val => {
         this.setState({ nome: val.target.value });
@@ -57,9 +60,9 @@ class App extends React.Component {
         let passwordErrore = '';
         let isNotValid = false;
 
-        console.log("sto cliccando avanti");
+        // promisi per validazioni fake
         let promise = new Promise((resolve, reject) => {
-            if (this.state.step === 1) {
+            if (this.state.step === StepEnum.Primo) {
                 const re = /^[a-zA-Z]+$/;
                 if (this.state.nome === '' || !re.test(this.state.nome)) {
                     isNotValid = true;
@@ -71,14 +74,14 @@ class App extends React.Component {
                     }
                 }
             }
-            if (this.state.step === 2) {
+            if (this.state.step === StepEnum.Secondo) {
                 if (this.state.password === '' || this.state.password !== this.state.confermaPassword ||
                     this.state.confermaPassword === '') {
                     isNotValid = true;
                     this.setState({ passwordErrore: 'Campi non valorizzati o le passwords non corrispondono ' });
                 }
             }
-            if (this.state.step === 3) {
+            if (this.state.step === StepEnum.Terzo) {
                 if (this.state.email === '' || !this.state.email.includes("@")) {
                     isNotValid = true;
                     this.setState({ emailErrore: 'Email non valido' });
@@ -94,22 +97,17 @@ class App extends React.Component {
 
         promise.then(res => {
             this.setState({ step: this.state.step + 1, emailErrore, nomeErrore, cognomeErrore, passwordErrore });
-            console.log(this.state.step);
         }).catch(error => {
             console.log("impossibile avanzare al prossimo step validazione lato server non corretta");
         });
     }
 
-
     handleBackClick() {
-        console.log("sto cliccando indietro");
         this.setState({ step: this.state.step - 1 });
-        console.log("Step Back: " + this.state.step);
-
     }
 
     handleNewForm() {
-        this.setState({ step: 1, nome: '', cognome: '', password: '', email: '', confermaPassword: '' });
+        this.setState({ step: StepEnum.Primo, nome: '', cognome: '', password: '', email: '', confermaPassword: '' });
     }
 
     isMobile() {
@@ -144,7 +142,7 @@ class App extends React.Component {
         // console.log("Is mobile: " + navigator.userAgent);
 
         if (isMobile) {
-            if (this.state.step === 4) {
+            if (this.state.step === StepEnum.Finale) {
                 return (
                     this.sendForm()
                 )
@@ -195,7 +193,7 @@ class App extends React.Component {
             }
         } else {
 
-            if (this.state.step === 4) {
+            if (this.state.step === StepEnum.Finale) {
                 return (
                     this.sendForm()
                 )

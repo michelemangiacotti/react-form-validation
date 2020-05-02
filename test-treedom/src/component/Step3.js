@@ -5,12 +5,13 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { isStepActive } from '../App';
+import { StepEnum } from './StepEnum.ts';
 
 
 class Step3 extends React.Component {
     render() {
         return (
-            <Container fluid="md" className={isStepActive(this.props.step, 3)}>
+            <Container fluid="md" className={isStepActive(this.props.step, StepEnum.Terzo)}>
                 <Row>
                     <Col>
                         <label className="title-step">

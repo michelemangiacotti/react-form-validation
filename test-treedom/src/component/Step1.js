@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { isStepActive } from '../App';
+import { StepEnum } from './StepEnum.ts';
 
 
 
@@ -12,7 +13,7 @@ class Step1 extends React.Component {
 
     render() {
         return (
-            <Container fluid="md" className={isStepActive(this.props.step, 1)}>
+            <Container fluid="md" className={isStepActive(this.props.step, StepEnum.Primo)}>
                 <Row >
                     <Col>
                         <label className="title-step">
@@ -50,13 +51,13 @@ class Step1 extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="btn-disabled "
+                        <Button className="btn-disabled " 
                             onClick={() => this.props.onClickBack()}
                             style={{ width: "80px" }}
                             disabled={true}>
                             Indietro
                         </Button>
-                        <Button className="btn-success"
+                        <Button className="btn-success" 
                             onClick={() => this.props.onClickNext()}
                             style={{ marginLeft: "15px", width: "80px" }}>
                             Avanti
