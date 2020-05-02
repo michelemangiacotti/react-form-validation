@@ -4,23 +4,24 @@ import '../App.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import { isStepActive } from '../App';
+
 
 class Step3 extends React.Component {
     render() {
         return (
-            <Container fluid="md" style={{ width: '100%', marginTop: "30px" }}
-                className={this.props.step !== 2 ? 'disabled-step' : ''}>
+            <Container fluid="md" className={isStepActive(this.props.step, 3)}>
                 <Row>
                     <Col>
-                        <label style={{ alignContent: 'center', fontSize: '20px' }}>
+                        <label className="title-step">
                             Terzo Step
-                            </label>
+                        </label>
                     </Col>
                 </Row>
-                <Row style={{ marginBottom: '10px' }}>
+                <Row>
                     <Col>
                         <input placeholder="Inserisci Email" type="text" name="email"
-                            style={{ width: '50%' }}
+                            className="input-style"
                             value={this.props.email}
                             onChange={this.props.onChangeEmail}
                         />
@@ -28,19 +29,21 @@ class Step3 extends React.Component {
                 </Row>
                 <Row>
                     <Col>
-                        <label style={{ fontSize: 15, color: "red" }}>
+                        <label className="error-label">
                             {this.props.emailErrore}
                         </label>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <Button className="btn-success" onClick={() => this.props.onClickBack()}
-                            style={{ width: "80px", display: this.props.isMobile ? 'none' : 'visible' }} >
+                        <Button className="btn-success"
+                            onClick={() => this.props.onClickBack()}
+                        >
                             Indietro
                         </Button>
-                        <Button className="btn-success" onClick={() => this.props.onClickNext()}
-                            style={{ marginLeft: "15px", width: "80px" }} disabled={this.props.isValid}>
+                        <Button className="btn-success"
+                            onClick={() => this.props.onClickNext()}
+                            style={{ marginLeft: "15px", width: "80px" }}>
                             Invia
                         </Button>
                     </Col>

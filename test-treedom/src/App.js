@@ -7,12 +7,19 @@ import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel'
 
+//in questo caso ho inserito qui l'inica funzione utilità usata
+//ma di solito tendo a creare delle classi utility per avere un
+//codice più ordinato e mantenibile
+export function isStepActive(currentStep, numberActiveStep) {
+    return currentStep !== numberActiveStep ? 'disabled-step' : 'container-step';
+}
+
 class App extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            step: 0,
+            step: 1,
             nome: '',
             nomeErrore: '',
             cognome: '',
@@ -42,11 +49,6 @@ class App extends React.Component {
         this.setState({ email: val.target.value });
     }
 
-    componentDidMount() {
-        console.log("componenti did mount" + this.state.step);
-
-    }
-
 
     handleNextClick() {
         let emailErrore = '';
@@ -57,26 +59,26 @@ class App extends React.Component {
 
         console.log("sto cliccando avanti");
         let promise = new Promise((resolve, reject) => {
-            if (this.state.step === 0) {
+            if (this.state.step === 1) {
                 const re = /^[a-zA-Z]+$/;
                 if (this.state.nome === '' || !re.test(this.state.nome)) {
                     isNotValid = true;
-                    this.setState({ nomeErrore: 'Nome non valorizzato o di tipo numerico', cognomeErrore });
+                    this.setState({ nomeErrore: 'Nome non valorizzato, con spazi o di tipo numerico', cognomeErrore });
                 } else {
                     if (this.state.cognome === '' || !re.test(this.state.cognome)) {
                         isNotValid = true;
-                        this.setState({ cognomeErrore: 'Cognome non valorizzato o di tipo numerico', nomeErrore });
+                        this.setState({ cognomeErrore: 'Cognome non valorizzato, con spazi o di tipo numerico', nomeErrore });
                     }
                 }
             }
-            if (this.state.step === 1) {
+            if (this.state.step === 2) {
                 if (this.state.password === '' || this.state.password !== this.state.confermaPassword ||
                     this.state.confermaPassword === '') {
                     isNotValid = true;
                     this.setState({ passwordErrore: 'Campi non valorizzati o le passwords non corrispondono ' });
                 }
             }
-            if (this.state.step === 2) {
+            if (this.state.step === 3) {
                 if (this.state.email === '' || !this.state.email.includes("@")) {
                     isNotValid = true;
                     this.setState({ emailErrore: 'Email non valido' });
@@ -107,7 +109,7 @@ class App extends React.Component {
     }
 
     handleNewForm() {
-        this.setState({ step: 0, nome: '', cognome: '', password: '', email: '', confermaPassword: '' });
+        this.setState({ step: 1, nome: '', cognome: '', password: '', email: '', confermaPassword: '' });
     }
 
     isMobile() {
@@ -126,25 +128,29 @@ class App extends React.Component {
         return isMobile;
     }
 
+    sendForm() {
+        return <div className="app-container">
+            <label className="title-success-form">
+                Hai inviato i dati inseriti, controlla la tua mail per confermare la registrazione
+             </label>
+            <Button className="btn-success" onClick={() => this.handleNewForm()}>
+                Ritorna alla registrazione 
+            </Button>
+        </div>;
+    }
+
     render() {
         const isMobile = this.isMobile();
-        console.log("Is mobile: " + navigator.userAgent);
+        // console.log("Is mobile: " + navigator.userAgent);
 
         if (isMobile) {
-            if (this.state.step === 3) {
+            if (this.state.step === 4) {
                 return (
-                    <div className="app-container">
-                        Hai inviato i dati inseriti, controlla la tua mail per confermare la registrazione
-                        <br />
-                        <br />
-                        <Button className="btn-success" onClick={() => this.handleNewForm()}>
-                            Ritorna alla home page
-                        </Button>
-                    </div>
+                    this.sendForm()
                 )
             } else {
                 return (
-                    <Carousel activeIndex={this.state.step} controls={false}>
+                    <Carousel activeIndex={this.state.step-1} controls={false}>
                         <Carousel.Item>
                             <div className="app-container">
                                 <Step1 onClickNext={() => this.handleNextClick()}
@@ -191,14 +197,7 @@ class App extends React.Component {
 
             if (this.state.step === 4) {
                 return (
-                    <div className="app-container">
-                        Hai inviato i dati inseriti, controlla la tua mail per confermare la registrazione
-                        <br />
-                        <br />
-                        <Button className="btn-success" onClick={() => this.handleNewForm()}>
-                            Ritorna alla home page
-                        </Button>
-                    </div>
+                    this.sendForm()
                 )
             } else {
                 return (
@@ -233,6 +232,7 @@ class App extends React.Component {
             }
         }
     }
+    
 }
 export default App;
 
