@@ -3,4 +3,4 @@ export enum StepEnum {
     Secondo =2,
     Terzo = 3,
     Finale = 4
-  };
+  }

@@ -6,7 +6,7 @@ import Step3 from './component/Step3.js';
 import Button from 'react-bootstrap/Button'
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel'
-import { StepEnum } from './component/StepEnum.ts';
+import { StepEnum } from './costants/StepEnum.ts';
 
 //in questo caso ho inserito qui l'inica funzione utilità usata
 //ma di solito tendo a creare delle classi utility per avere un

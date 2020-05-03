@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import { isStepActive } from '../App';
-import { StepEnum } from './StepEnum.ts';
+import { StepEnum } from '../costants/StepEnum.ts';
 
 
 class Step3 extends React.Component {
